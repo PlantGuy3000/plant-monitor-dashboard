@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Plant Monitor Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+    }
+    canvas {
+      max-width: 100%;
+    }
+    img {
+      max-width: 300px;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌿 Plant Growth Monitoring Dashboard</h1>
+
+  <section>
+    <h2>📈 Temperature & Humidity Graph</h2>
+    <canvas id="dataChart" width="800" height="400"></canvas>
+  </section>
+
+  <section>
+    <h2>🖼️ Latest Images</h2>
+    <!-- You can replace the links below with dynamically loaded images -->
+    <img src="https://yourserver.com/image1.jpg" alt="Snapshot 1">
+    <img src="https://yourserver.com/image2.jpg" alt="Snapshot 2">
+  </section>
+
+  <script>
+    // Sample data (replace with AJAX call to Google Sheets or other API)
+    const labels = ["10:15", "10:30", "10:45"];
+    const tempData = [24.3, 24.7, 25.1];
+    const humidityData = [58, 60, 62];
+
+    const ctx = document.getElementById('dataChart').getContext('2d');
+    const dataChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'Temperature (°C)',
+            data: tempData,
+            borderColor: 'rgb(255, 99, 132)',
+            fill: false
+          },
+          {
+            label: 'Humidity (%)',
+            data: humidityData,
+            borderColor: 'rgb(54, 162, 235)',
+            fill: false
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Environmental Data Over Time'
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
